@@ -32,7 +32,7 @@ z-index:
 
 ## Direction
 
-The site modernizes the compact academic-homepage structure of the reference repository. A centered reading column, one square grayscale image, text-only links, thin rules, and unboxed project rows let the research content lead.
+The site modernizes the compact academic-homepage structure of the reference repository. A centered reading column, one square color image, text-only links, thin rules, unboxed project rows, and a simple hobbies photo slot let the research content lead.
 
 ## Rules
 
