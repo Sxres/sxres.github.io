@@ -141,14 +141,10 @@ a {
   color: var(--color-ink);
 }
 
-.header-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.profile-links .bi {
+  display: block;
+  font-size: 1.125rem;
+  line-height: 1;
 }
 
 .intro {
@@ -408,26 +404,12 @@ h1 {
   text-decoration: none;
 }
 
-svg.instagram-icon {
-  display: block;
-  width: 1.25rem !important;
-  min-width: 1.25rem;
-  max-width: 1.25rem;
-  height: 1.25rem !important;
-  min-height: 1.25rem;
-  max-height: 1.25rem;
+.instagram-icon {
+  display: inline-block;
   flex: 0 0 auto;
-}
-
-.instagram-icon-camera {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 1.5;
-}
-
-.instagram-icon-dot {
-  fill: #fff;
-  stroke: none;
+  color: var(--color-ink);
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 .climbing-account-copy {
