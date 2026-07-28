@@ -441,6 +441,7 @@ h1 {
 
 .hobby-photo {
   display: block;
+  height: auto;
   object-fit: cover;
 }
 
