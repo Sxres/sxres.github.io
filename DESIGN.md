@@ -32,14 +32,15 @@ z-index:
 
 ## Direction
 
-The site modernizes the compact academic-homepage structure of the reference repository. A centered reading column, one square color image, text-only links, thin rules, unboxed project rows, and a simple hobbies photo slot let the research content lead.
+The site modernizes the compact academic-homepage structure of the reference repository. A centered reading column, one square color image, text-only links, thin rules, unboxed project rows, and a simple hobbies photo slot let the research content lead. Section headings sit above their content. About pairs the prose with a toolkit grid of devicon icons on the right; Experience lays its numbered highlights out two per row, with a small monochrome Durham College AI Hub mark between the role and the highlights.
 
 ## Rules
 
-- Use only the five monochrome palette roles above.
+- Use only the five monochrome palette roles above. Photos and toolkit icons keep their own colours.
 - Use Overused Grotesk for every text role; hierarchy comes from size, weight, and spacing.
 - Keep body copy between 45 and 65 characters per line where practical.
-- Use dividers and whitespace instead of cards, shadows, gradients, or decorative containers.
+- Use dividers and whitespace instead of cards, shadows, gradients, or decorative containers. The one exception is the toolkit grid's hairline border.
+- The AI Hub mark is inline SVG filled with `currentColor` so it always matches the ink role.
 - Interactive targets must be at least 44px tall and have visible keyboard focus.
 - Reflow the page into one column on compact screens without hiding content.
-- Motion is limited to short link and image feedback and must respect reduced-motion preferences.
+- Motion is limited to one intro page-load sequence (text rises in, the profile photo settles), the AI Hub mark assembling as it scrolls into view, and short link feedback. All of it must respect reduced-motion preferences.
