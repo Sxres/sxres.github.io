@@ -7,7 +7,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"Jost",Futura
 .book{position:relative;max-width:1180px;margin:0 auto;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;background:var(--paper)}
 .pg{position:relative;padding:56px 54px 84px}
 .left{padding-right:60px}.right{padding-left:60px;display:flex;align-items:center;justify-content:center}
-.body,.num{transition:opacity .4s ease}
+.body,.num{transition:opacity .38s ease}
 .out .body,.out .num{opacity:0}
 .num{position:absolute;bottom:34px;font-size:15px}
 .left .num{left:56px}.right .num{right:56px}

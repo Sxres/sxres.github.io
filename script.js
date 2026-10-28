@@ -33,18 +33,35 @@ const sc=(cx,by,w,h,n,r)=>{let g=B(cx-w/2,by-h,w,h,'f-i')+`<polygon points="${cx
 const slab=(y,s,c)=>B(60,y,300,60,c)+T(210,y+36,s,'lw');
 const P=[
 {t:'About me',m:'Oshawa, Ontario',
- x:['I’m Dragos, an AI student in Oshawa, Ontario. I started my B.Sc. at Durham College in 2023, and what keeps me interested is the gap between a model that works in a notebook and a system people can actually rely on.',
+ x:['I started my B.Sc. at Durham College in 2023, and what keeps me hooked is how fast the field is evolving and just how exciting everything in AI is right now. I’m also super interested in frontend design, low-level systems, and how modelling can be applied to physical hardware.',
     'Outside of work, I’m happiest outdoors. I love rock climbing and snowboarding, and I’ll happily say yes to just about any outdoor adventure, whether that’s a new route, a fresh trail or a powder day.',
-    'Right now I’m a research assistant at the Durham College AI Hub, working with my manager on an AI assistant for a client. I’m always happy to talk about AI, so feel free to reach out.'],
- d:()=>{const S=['M-9 2C-10-7 0-9 8-5C12 0 9 8 0 7C-6 8-8 6-9 2Z','M-10 3L-8-4L9-3L10 4Z','M-10 0A10 8 0 1 0 10 0A10 8 0 1 0-10 0Z','M-8 7L0-9L9 6Z','M-4 0A4 6 0 1 0 4 0A4 6 0 1 0-4 0Z','M-8-2C-6-9 2-8 4-4C10-5 11 3 5 6C0 9-8 8-8-2Z'],
-  h=(x,y,i,s,c,o='')=>`<path d="${S[i%6]}" transform="translate(${x} ${y}) rotate(${i*53%360}) scale(${s})" class="${c}" ${o}/>`,
-  R=[[170,470],[215,425],[180,375],[240,330],[200,280],[265,235],[215,190],[250,145],[230,108]],H=[[110,430],[300,455],[120,350],[300,380],[290,290],[120,240],[150,150],[310,190],[300,125],[160,320]];
-  return T(210,36,'every route is solved one hold at a time','lr')+`<polygon points="70,500 60,420 80,330 62,250 90,170 76,110 150,90 260,100 340,84 352,170 336,260 356,350 340,430 352,500" class="f-i"/><rect x="30" y="500" width="360" height="20" class="f-i" fill-opacity=".5"/>`+H.map(([x,y],i)=>h(x,y,i+1,(.6+(i*5%7)*.16).toFixed(2),'f-p','fill-opacity=".6"')).join('')+R.map(([x,y],i)=>h(x,y,i+2,(1+(i*3%4)*.2).toFixed(2),'f-r')).join('')}},
+    'I’m fortunate enough at the moment to be able to work as a research assistant at Durham College’s AI Hub, building applied AI projects with real clients across healthcare, nuclear, and physical AI. I’m always happy to talk about AI, so feel free to reach out.'],
+ d:()=>{
+    const hd=(t,x,y,r,s,rt)=>{
+      const c=rt?'f-r':'f-p',bc='fill="rgba(0,0,0,0.55)"',ic='fill="rgba(0,0,0,0.28)"',sc='stroke="rgba(0,0,0,0.35)"';
+      let b='';
+      if(t===0)b=`<path d="M-15,1C-15,-9 15,-9 15,1C16,11 9,14 0,14C-9,14 -16,11 -15,1Z" class="${c}"/><path d="M-11,-1C-11,-6 11,-6 11,-1C9,3 -9,3 -11,-1Z" ${ic}/><circle cx="0" cy="6" r="2.2" ${bc}/>`;
+      else if(t===1)b=`<path d="M-14,-2C-14,-6 14,-6 14,-2C15,4 10,6 0,6C-10,6 -15,4 -14,-2Z" class="${c}"/><path d="M-11,-2L11,-2" stroke-width="1.8" fill="none" ${sc}/><circle cx="0" cy="2" r="1.8" ${bc}/>`;
+      else if(t===2)b=`<path d="M-17,2C-18,-11 18,-11 17,2C15,13 -15,13 -17,2Z" class="${c}"/><path d="M-11,-4C-7,-8 7,-8 11,-4" stroke-width="1.6" fill="none" ${sc}/><circle cx="0" cy="3.5" r="2.2" ${bc}/>`;
+      else if(t===3)b=`<path d="M-6,-14C2,-14 7,-10 6,-3C5,2 7,8 4,14C-3,14 -6,10 -5,2C-5,-4 -8,-10 -6,-14Z" class="${c}"/><path d="M-2,-8C1,-4 1,4 -1,8" stroke-width="1.6" fill="none" ${sc}/><circle cx="0" cy="0" r="2" ${bc}/>`;
+      else if(t===4)b=`<path d="M-14,1C-14,-8 14,-8 14,2C13,11 -13,11 -14,1Z" class="${c}"/><circle cx="-4.5" cy="-0.5" r="3.2" ${bc}/><circle cx="4.5" cy="-0.5" r="3.2" ${bc}/><circle cx="0" cy="6" r="1.8" ${bc}/>`;
+      else if(t===5)b=`<path d="M-8,-1L0,-6L8,-1L6,4L-6,4Z" class="${c}"/><path d="M-5,-1L5,-1" stroke-width="1.4" fill="none" ${sc}/><circle cx="0" cy="1" r="1.5" ${bc}/>`;
+      else b=`<path d="M-22,0C-22,-11 22,-11 22,0C23,13 14,16 0,16C-14,16 -23,13 -22,0Z" class="${c}"/><path d="M-17,-2C-17,-8 17,-8 17,-2C13,4 -13,4 -17,-2Z" ${ic}/><circle cx="-7" cy="7" r="2.2" ${bc}/><circle cx="7" cy="7" r="2.2" ${bc}/>`;
+      return `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"${rt?'':' opacity=".55"'}>${b}</g>`;
+    };
+    const R=[[170,470,5,5,1.1],[240,470,5,-8,1.1],[180,375,1,12,1.2],[240,330,3,-20,1.25],[200,280,4,8,1.2],[265,235,1,-25,1.25],[215,190,2,-5,1.3],[230,122,6,0,1.25]];
+    const H=[[115,430,0,10,0.9],[300,455,1,-15,1.0],[120,350,3,25,1.1],[305,380,2,-10,1.1],[290,290,4,15,1.0],[125,240,1,-10,1.0],[150,150,2,10,1.2],[310,190,0,-20,1.1],[300,125,1,5,1.0],[160,320,5,-5,0.9]];
+    return T(210,36,'every route is solved one hold at a time','lr')+
+      `<polygon points="70,500 60,420 80,330 62,250 90,170 76,110 150,90 260,100 340,84 352,170 336,260 356,350 340,430 352,500" class="f-i"/>`+
+      `<rect x="30" y="500" width="360" height="20" class="f-i" fill-opacity=".5"/>`+
+      H.map(([x,y,t,r,s])=>hd(t,x,y,r,s,false)).join('')+
+      R.map(([x,y,t,r,s])=>hd(t,x,y,r,s,true)).join('');
+  }},
 {t:'Experience',m:'Research Assistant, Durham College AI Hub · May 2026 to present',
- x:['Working with my manager, I built the agentic core of an AI assistant that switches between several personas. It runs on AWS Lambda and Bedrock, remembers context across turns, and stays under 1.8 seconds at the 95th percentile in load tests.',
-    'I set up retrieval so the assistant answers from the client’s own documents, using Bedrock Knowledge Bases and Titan embeddings.',
-    'I found and fixed a routing bug that let rejected requests still reach the language model. The fix saved about 1.4K tokens per request and closed off a way to run up costs.',
-    'I also redesigned the routing with <a href="https://typesafe.ai" target="_blank" rel="noopener">TypeSafe’s Jev decision model</a>, replacing three classifiers run in sequence with one parallel call. Median latency fell from 3.8 s to 0.14 s while recall held at 93.9% across six intents.'],
+ x:['Working at the AI Hub has been an awesome hands-on experience. I built the agentic core of an AI assistant that switches between several personas, powered by AWS Lambda and Amazon Bedrock. It remembers context across turns and stays under 1.8 seconds at the 95th percentile in load tests.',
+    'To make sure the assistant actually knows what it’s talking about, I set up retrieval from the client’s own documents using Bedrock Knowledge Bases and Titan embeddings.',
+    'I also tracked down and fixed a sneaky routing bug where rejected requests were still reaching the LLM. Catching that saved about 1.4K tokens per request and prevented unnecessary cloud costs from running up.',
+    'The coolest part was redesigning our intent routing: instead of running three classifiers in a slow sequence, I rebuilt it with <a href="https://typesafe.ai" target="_blank" rel="noopener">TypeSafe’s Jev decision model</a> in one parallel call. Median latency crashed from 3.8 s to 0.14 s (about 29x faster!) while holding recall at 93.9% across six intents.'],
  d:()=>{const bar=(y,l,w,c)=>T(40,y,l,'','start')+B(40,y+12,w,30,c);
   return T(210,36,'one parallel call replaces three in a row','lr')+bar(120,'median latency, before: 3.8 s',340,'f-i')+B(150,132,4,30,'f-p')+B(262,132,4,30,'f-p')+['97','210','323'].map(x=>T(x,152,'classifier','lw')).join('')+bar(210,'after: 0.14 s',13,'f-r')+bar(310,'worst case, before: 7.9 s',340,'f-i')+bar(400,'after: 0.32 s',14,'f-r')+T(210,488,'about 29x faster at the median,')+T(210,512,'with 93.9% recall kept across 6 intents')}},
 {t:'Education',m:'Durham College · Oshawa, Ontario',
@@ -66,31 +83,31 @@ const P=[
     '<b>Web and cloud:</b> FastAPI, SvelteKit, Supabase, Streamlit, AWS (EC2, S3, Lambda, API Gateway), GCP (Cloud Run).'],
  d:()=>T(210,36,'a stack, built from the ground up','lr')+[['web & cloud','f-i'],['llms & testing','f-r'],['ml & data','f-i'],['languages & tools','f-r']].map(([s,c],i)=>slab(90+i*84,s,c)).join('')},
 {t:'Financial News Agent',m:'Python, TypeScript, FastAPI, Claude API, Supabase, SvelteKit',
- x:['An agentic financial assistant. Claude decides which tools to call for prices, news, financials and insider trades, then pulls the results into one answer. The SvelteKit frontend streams the response live, shows tool-call progress, and has portfolio views.',
-    'The FastAPI backend is locked down with Supabase JWT authentication, row-level security, per-IP rate limits and input sanitization.',
+ x:['I wanted to see how far I could push Claude’s tool-calling capabilities to build a real-time financial analyst. The agent breaks down complex user queries, autonomously decides which tools to trigger (fetching live stock quotes, market news, company financials, or insider trades), and synthesizes everything into a clear, cited answer.',
+    'To make it feel super responsive, I built a SvelteKit frontend that streams the response live and visualizes tool-call progress as it happens. The FastAPI backend handles the heavy lifting, locked down with Supabase JWT auth, row-level security, per-IP rate limits, and input sanitization.',
     '<a href="https://github.com/Sxres/FunnyMarketNewsLetter" target="_blank" rel="noopener">View the code on GitHub</a>'],
  d:()=>{let g=T(210,36,'a question is converted into a researched answer','lr')+B(110,70,200,48,'f-i')+T(210,100,'your question','lw')+A(210,120,210,168)+B(110,172,200,56,'f-r')+T(210,205,'claude agent','lw');
   [['price',42],['news',134],['financials',226],['insiders',318]].forEach(([s,x],i)=>{g+=B(x,300,84,44,'f-i')+T(x+42,327,s,'lw')+A(210,230,x+42,296)+A(x+42,346,[160,190,230,260][i],396)});
   return g+B(110,400,200,48,'f-i')+T(210,430,'live answer, streamed','lw')+T(210,496,'locked down with JWT auth and rate limits')}},
 {t:'Vision Transformer Research',m:'Python, PyTorch, Scikit-learn, Pandas',
- x:['I compared more than eight vision models, including DINOv2, ViT, SwinV2, ResNet and YOLO, on a binary skin cancer classification task, using stratified 5-fold cross-validation.',
-    'Ablation studies, layer-freezing strategies and ensembles got the best results to about 92% sensitivity at a clinically relevant threshold.',
-    'I also cleaned the MRA-MIDAS dataset from 3,000 down to 906 quality-controlled cases and built reproducible preprocessing, augmentation and training pipelines.',
+ x:['Medical imaging has always fascinated me because getting it right actually matters. This project was also me and my classmate <a href="https://www.linkedin.com/in/reynardlin/" target="_blank" rel="noopener">Rey</a>’s first real dive into research. We teamed up to evaluate over eight vision architectures, including DINOv2, ViT, SwinV2, ResNet, and YOLO, on binary skin cancer classification using stratified 5-fold cross-validation.',
+    'Garbage in means garbage out, so we curated and cleaned the noisy MRA-MIDAS dataset from 3,000 cases down to 906 quality-controlled samples, building reproducible preprocessing and augmentation pipelines from scratch.',
+    'Through ablation studies, targeted layer-freezing, and building ensembles, we pushed the top configuration to ~92% sensitivity at a clinically relevant threshold.',
     '<a href="https://github.com/Sxres/SkinCancerImageClassificationResearch" target="_blank" rel="noopener">View the code on GitHub</a>'],
  d:()=>{let g=T(210,36,'models are tested until one can be trusted','lr')+T(40,96,'stratified 5-fold cross-validation','','start');
   for(let i=0;i<5;i++)g+=B(40+i*70,108,64,34,i==2?'f-r':'f-i')+T(72+i*70,130,i==2?'test':'train','lw');
   ['DINOv2','ViT','SwinV2','ResNet','YOLO'].forEach((s,i)=>{const y=190+i*42;g+=B(40,y,150,30,'f-i')+T(115,y+20,s,'lw')+A(192,y+15,264,y+15)});
   return g+B(268,190,112,198,'f-r')+T(324,296,'ensemble','lw')+T(210,440,'about 92% sensitivity','lr')+T(210,462,'at a clinically relevant threshold')+T(210,490,'906 quality-controlled cases')}},
 {t:'Temperature Modelling',m:'Python, XGBoost, FastAPI, Streamlit, GCP, Docker',
- x:['An XGBoost model that predicts temperature from historical weather data, using cross-validation and regularization to keep it from overfitting. Tuned with a 10-fold randomized search, it reached R² 0.991 and MAE 0.71.',
-    'I then wrapped it in a Dockerized FastAPI service on Google Cloud Run and added a Streamlit interface for on-demand predictions.',
+ x:['I built this to take tabular machine learning all the way from raw weather history into a deployed, production-ready microservice. Using XGBoost with regularization and 10-fold randomized search tuning to keep it from overfitting, the model hit an R² of 0.991 and MAE of 0.71.',
+    'To turn it into something anyone could easily query, I wrapped the inference pipeline in a Dockerized FastAPI service on Google Cloud Run and built a clean Streamlit interface for on-demand predictions.',
     '<a href="https://github.com/Sxres/temperature_predictor_app" target="_blank" rel="noopener">View the code on GitHub</a>'],
  d:()=>{let g=T(210,36,'history is converted into a prediction','lr');
   [['historical weather data','f-i'],['xgboost, tuned with 10-fold search','f-r'],['fastapi in docker','f-i'],['google cloud run','f-i'],['streamlit app','f-r']].forEach(([s,c],i)=>{const y=80+i*76;g+=B(70,y,280,44,c)+T(210,y+27,s,'lw')+(i<4?A(210,y+46,210,y+74):'')});
   return g+T(210,490,'R² 0.991  ·  MAE 0.71')}},
 {t:'LotWatch',m:'Python, OpenCV, NumPy, Jupyter',
- x:['A computer vision system that watches parking lot footage and decides, frame by frame, which spaces are taken and which are empty. It writes out an annotated video with green and red overlays and a live count of occupied spots.',
-    'Each space is a hand-drawn polygon. The detector combines MOG2 background subtraction with a Laplacian texture measure, since a car has far more edges than bare asphalt, and adjustable thresholds let it cope with different footage, like solid-colour cars that have little texture.',
+ x:['LotWatch is a real-time computer vision system that monitors parking lot footage to figure out which spaces are taken versus empty, frame by frame. It renders an annotated video stream complete with live green/red overlays and an occupancy counter.',
+    'Instead of throwing a heavy deep net at the problem, I wanted an efficient classical CV approach: each space is a hand-drawn polygon combining MOG2 background subtraction with Laplacian edge-texture filtering, leveraging the fact that cars pack far more high-frequency edges than asphalt. Adjustable thresholds keep it accurate even with solid-color cars or shifting daylight.',
     '<a href="https://github.com/Sxres/LotWatch" target="_blank" rel="noopener">View the code on GitHub</a>'],
  d:()=>{let g=T(210,36,'every spot is converted into a yes or no','lr');
   [[100,[1,0,1,1,0,1]],[300,[0,1,1,0,1,0]]].forEach(([y,o])=>o.forEach((v,i)=>{const x=40+i*56;g+=`<rect x="${x}" y="${y}" width="56" height="84" fill="none" class="s-i" stroke-width="2"/>`+(v?B(x+8,y+10,40,64,'f-r')+B(x+14,y+(y<200?44:20),28,18,'f-p'):'')}));
@@ -101,7 +118,7 @@ const rom=n=>['','i','ii','iii','iv','v','vi','vii','viii','ix','x','xi','xii','
 const ORD=[0,1,2,3,4,5,6,7],pn=i=>4+ORD.indexOf(i)*2;
 const row=i=>`<li><button data-i="${i+1}"><span>${P[i].t}</span><i></i><b>${rom(pn(i))}</b></button></li>`;
 const home=`<h2>Dragos Sorescu</h2><p class="sub">AI Researcher</p>
-<p>I’m an AI student at Durham College in Oshawa, Ontario, focused on applied machine learning and reliable AI systems. I’m currently a research assistant at the Durham College AI Hub, where I build agentic AI systems. This book collects my experience, education and projects.</p>
+<p>Hello, thanks so much for visiting and welcome to my portfolio site! As you can tell, I’m Dragos, an undergrad student in Ontario, Canada studying machine learning and deep learning. Every day I’m trying to further my knowledge, explore new ideas, and build practical systems. This book collects my experience, education, and projects.</p>
 <h3>Background</h3><ol class="toc">${[0,1,2,3].map(row).join('')}</ol>
 <h3>Projects</h3><ol class="toc">${[4,5,6,7].map(row).join('')}</ol>
 <p class="links"><a href="mailto:sorescudragos847@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/dragos-sorescu" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/Sxres" target="_blank" rel="noopener">GitHub</a> · <a href="Dragos_Sorescu_Resume.pdf" target="_blank" rel="noopener">Resume</a></p>`;
@@ -123,8 +140,17 @@ function render(i){
 function go(i){
   if(busy||i===cur)return;busy=true;
   $('bk').classList.add('out');
-  setTimeout(()=>{render(i);$('bk').classList.remove('out');busy=false},400);
+  setTimeout(()=>{
+    render(i);
+    $('bk').classList.remove('out');
+    setTimeout(()=>{busy=false},380);
+  },380);
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-i]');if(b)go(+b.dataset.i)});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')go(0)});
+document.addEventListener('keydown',e=>{
+  if(e.repeat)return;
+  if(e.key==='Escape')go(0);
+  else if(e.key==='ArrowRight'&&cur<P.length)go(cur+1);
+  else if(e.key==='ArrowLeft'&&cur>0)go(cur-1);
+});
 render(0);
