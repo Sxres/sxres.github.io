@@ -97,8 +97,9 @@ const P=[
   return g+`<line x1="40" y1="240" x2="380" y2="240" class="s-i" stroke-width="3" stroke-dasharray="14 12" stroke-opacity=".5"/>`+B(100,430,220,46,'f-i')+T(210,459,'occupied: 7 of 12','lw')}}
 ];
 
+const rom=n=>['','i','ii','iii','iv','v','vi','vii','viii','ix','x','xi','xii','xiii','xiv','xv','xvi','xvii','xviii','xix','xx'][n];
 const ORD=[0,1,2,3,4,5,6,7],pn=i=>4+ORD.indexOf(i)*2;
-const row=i=>`<li><button data-i="${i+1}"><span>${P[i].t}</span><i></i><b>${pn(i)}</b></button></li>`;
+const row=i=>`<li><button data-i="${i+1}"><span>${P[i].t}</span><i></i><b>${rom(pn(i))}</b></button></li>`;
 const home=`<h2>Dragos Sorescu</h2><p class="sub">AI Researcher</p>
 <p>I’m an AI student at Durham College in Oshawa, Ontario, focused on applied machine learning and reliable AI systems. I’m currently a research assistant at the Durham College AI Hub, where I build agentic AI systems. This book collects my experience, education and projects.</p>
 <h3>Background</h3><ol class="toc">${[0,1,2,3].map(row).join('')}</ol>
@@ -108,12 +109,12 @@ const home=`<h2>Dragos Sorescu</h2><p class="sub">AI Researcher</p>
 const $=id=>document.getElementById(id);
 let cur=0,busy=false;
 function render(i){
-  cur=i;const L=$('L');
+  cur=i;const L=$('L');$('bk').classList.toggle('inner',!!i);
   L.className='body'+(i?'':' big');
   if(i){const p=P[i-1];
     L.innerHTML=`<h2>${p.t}</h2><p class="sub">${p.m}</p>${p.x.map(t=>`<p>${t}</p>`).join('')}<button class="back" data-i="0">Back to contents</button>`;
     $('Rt').innerHTML=`<svg viewBox="0 0 420 560" role="img" aria-label="Diagram: ${p.t}">${p.d()}</svg>`;
-    $('ln').textContent=pn(i-1);$('rn').textContent=pn(i-1)+1;
+    $('ln').textContent=rom(pn(i-1));$('rn').textContent=rom(pn(i-1)+1);
   }else{
     L.innerHTML=home;$('Rt').innerHTML=homeDiagram();
     $('ln').textContent='ii';$('rn').textContent='iii';
