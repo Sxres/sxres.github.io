@@ -46,7 +46,7 @@ const P=[
     'I found and fixed a routing bug that let rejected requests still reach the language model. The fix saved about 1.4K tokens per request and closed off a way to run up costs.',
     'I also redesigned the routing with <a href="https://typesafe.ai" target="_blank" rel="noopener">TypeSafe’s Jev decision model</a>, replacing three classifiers run in sequence with one parallel call. Median latency fell from 3.8 s to 0.14 s while recall held at 93.9% across six intents.'],
  d:()=>{const bar=(y,l,w,c)=>T(40,y,l,'','start')+B(40,y+12,w,30,c);
-  return T(210,36,'one parallel call replaces three in a row','lr')+bar(120,'median latency, before: 3.8 s',340,'f-i')+B(150,132,4,30,'f-p')+B(262,132,4,30,'f-p')+['97','210','323'].map(x=>T(x,152,'classifier','lw')).join('')+bar(210,'after: 0.14 s',13,'f-r')+bar(310,'worst case, before: 7.9 s',340,'f-i')+bar(400,'after: 0.32 s',14,'f-r')+T(210,490,'about 29x faster at the median,')+T(210,510,'with 93.9% recall kept across 6 intents')}},
+  return T(210,36,'one parallel call replaces three in a row','lr')+bar(120,'median latency, before: 3.8 s',340,'f-i')+B(150,132,4,30,'f-p')+B(262,132,4,30,'f-p')+['97','210','323'].map(x=>T(x,152,'classifier','lw')).join('')+bar(210,'after: 0.14 s',13,'f-r')+bar(310,'worst case, before: 7.9 s',340,'f-i')+bar(400,'after: 0.32 s',14,'f-r')+T(210,488,'about 29x faster at the median,')+T(210,512,'with 93.9% recall kept across 6 intents')}},
 {t:'Education',m:'Durham College · Oshawa, Ontario',
  x:['<b>B.Sc. in Artificial Intelligence</b>, September 2023 to present. My focus is applied machine learning and reliable AI systems.',
     'Honour Roll in Fall 2025 and Winter 2026.',
@@ -113,7 +113,7 @@ function render(i){
   L.className='body'+(i?'':' big');
   if(i){const p=P[i-1];
     L.innerHTML=`<h2>${p.t}</h2><p class="sub">${p.m}</p>${p.x.map(t=>`<p>${t}</p>`).join('')}<button class="back" data-i="0">Back to contents</button>`;
-    $('Rt').innerHTML=`<svg viewBox="0 0 420 560" role="img" aria-label="Diagram: ${p.t}">${p.d()}</svg>`;
+    $('Rt').innerHTML=`<svg viewBox="0 0 420 560" role="img" aria-label="Diagram: ${p.t}">${AR}${p.d()}</svg>`;
     $('ln').textContent=rom(pn(i-1));$('rn').textContent=rom(pn(i-1)+1);
   }else{
     L.innerHTML=home;$('Rt').innerHTML=homeDiagram();
