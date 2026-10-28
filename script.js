@@ -104,7 +104,7 @@ const home=`<h2>Dragos Sorescu</h2><p class="sub">AI Researcher</p>
 <p>I’m an AI student at Durham College in Oshawa, Ontario, focused on applied machine learning and reliable AI systems. I’m currently a research assistant at the Durham College AI Hub, where I build agentic AI systems. This book collects my experience, education and projects.</p>
 <h3>Background</h3><ol class="toc">${[0,1,2,3].map(row).join('')}</ol>
 <h3>Projects</h3><ol class="toc">${[4,5,6,7].map(row).join('')}</ol>
-<p class="links"><a href="mailto:sorescudragos847@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/dragos-sorescu" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/Sxres" target="_blank" rel="noopener">GitHub</a></p>`;
+<p class="links"><a href="mailto:sorescudragos847@gmail.com">Email</a> · <a href="https://www.linkedin.com/in/dragos-sorescu" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/Sxres" target="_blank" rel="noopener">GitHub</a> · <a href="Dragos_Sorescu_Resume.pdf" target="_blank" rel="noopener">Resume</a></p>`;
 
 const $=id=>document.getElementById(id);
 let cur=0,busy=false;
