@@ -84,7 +84,7 @@ const book = document.getElementById('bk');
 const spreads = [...book.querySelectorAll('.spread')];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let current = -1;
-let transition;
+let busy = false;
 
 function pageFromHash() {
   return Math.max(0, spreads.findIndex(page => '#' + page.id === location.hash));
@@ -102,6 +102,8 @@ function render(index, focus = false) {
     illustration.innerHTML = markup.replaceAll('id="ah"', 'id="' + markerId + '"').replaceAll('url(#ah)', 'url(#' + markerId + ')');
   }
   current = index;
+  // Start the incoming chapter at zero opacity before beginning its fade-in.
+  if (book.classList.contains('out')) void page.offsetWidth;
   book.classList.remove('out');
   if (focus) {
     window.scrollTo({top: 0, behavior: 'instant'});
@@ -110,20 +112,25 @@ function render(index, focus = false) {
 }
 
 function go(index) {
-  clearTimeout(transition);
-  if (index === current) {
-    book.classList.remove('out');
-    return;
-  }
+  if (busy || index === current) return;
   if (reducedMotion.matches) {
     render(index, true);
   } else {
+    busy = true;
     book.classList.add('out');
-    transition = setTimeout(() => render(index, true), 380);
+    setTimeout(() => {
+      render(index, true);
+      setTimeout(() => {
+        busy = false;
+        // Keep browser history in sync if it changed during the page turn.
+        if (pageFromHash() !== current) go(pageFromHash());
+      }, 380);
+    }, 380);
   }
 }
 
 function navigate(index) {
+  if (busy || index === current) return;
   const hash = '#' + spreads[index].id;
   if (location.hash !== hash) history.pushState(null, '', hash);
   go(index);
