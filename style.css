@@ -50,7 +50,7 @@ svg{width:100%;max-width:380px;height:auto;display:block}
 .right{padding-top:28px;flex-direction:column}
 .left .body{max-width:none}
 .left .num{left:26px}.right .num{right:26px}.num{font-size:14px}
-.right svg{max-width:340px;max-height:62svh;margin:0 auto}
+.right svg{max-width:340px;margin:0 auto}
 .credit{padding:0 60px;font-size:11.5px}
 .book.inner{padding:36px 26px 84px}
 .book.inner .pg,.book.inner .body{display:contents}
