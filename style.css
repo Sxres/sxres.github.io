@@ -19,6 +19,10 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"Jost",Futura
 .left .body{max-width:520px;margin:0 auto}
 .right .body{width:100%;display:flex;justify-content:center}
 h1,h2{font-size:15px;font-weight:700;text-align:center;letter-spacing:.08em;text-transform:uppercase;margin:0 0 20px}
+/* Chapter navigation moves focus to these headings for screen readers. */
+.book :is(h1, h2)[tabindex="-1"]:focus {
+  outline: none;
+}
 .big h1{font-size:26px;margin-bottom:8px}
 .toc-heading{font-size:15px;font-weight:700;margin:26px 0 8px;text-align:left;letter-spacing:normal;text-transform:none}
 .links{text-align:center;margin-top:26px;font-size:15px}.links a{color:inherit}.links a:hover,.links a:focus-visible{color:var(--red)}
